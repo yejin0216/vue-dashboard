@@ -2,7 +2,10 @@
 
 ## Project setup
 ```
-yarn install
+1. node, git 설치 
+2. npm install yarn 
+3. yarn global add @vue/cli babel-polyfill
+4. yarn install 
 ```
 
 ### Compiles and hot-reloads for development

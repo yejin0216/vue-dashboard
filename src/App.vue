@@ -1,7 +1,6 @@
 <template>
   <div>
     <HomeComponent></HomeComponent>
-    <StatusComponent></StatusComponent>
   </div>
 </template>
 

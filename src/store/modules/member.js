@@ -14,14 +14,16 @@ export default {
       state.accessToken = payload;
     },
   },
+  /* eslint-disable */
   actions: {
-    login({ commit }, payload) {
-      commit(this.addMemberInfo, payload);
+    login(store, payload) {
+      store.commit(addMemberInfo, payload);
     },
-    logout({ commit }, payload) {
-      commit(this.removeMemberInfo, payload);
+    logout(store, payload) {
+      store.commit(removeMemberInfo, payload);
     },
   },
+  /* eslint-disable */
   getters: {
     /* empty */
   },

@@ -2,13 +2,7 @@ export default {
   state: {
     deviceList: [],
   },
-  mutations: {
-
-  },
-  actions: {
-
-  },
-  getters: {
-
-  },
+  mutations: {},
+  actions: {},
+  getters: {},
 };

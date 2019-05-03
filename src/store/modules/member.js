@@ -21,10 +21,10 @@ export default {
     },
     logout(store, payload) {
       store.commit(removeMemberInfo, payload);
-    },
+    }
   },
   /* eslint-disable */
   getters: {
     /* empty */
-  },
+  }
 };

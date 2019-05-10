@@ -6,8 +6,8 @@
     <article class="subcontents">
       <div class="condition text-xs-right">
         <select class="form">
-          <option value>최근 수정순</option>
-          <option value>대시보드 이름순</option>
+          <option value>최근 등록일순</option>
+          <option value>디바이스 이름순</option>
         </select>
       </div>
       <v-container grid-list-md>
@@ -15,35 +15,35 @@
           <v-flex v-for="i in 5" :key="`4${i}`" xs12>
             <v-card flat>
               <v-card-text>
-                <!--대시보드명-->
+                <!--디바이스명-->
                 <div class="rows">
                   <div class="summary">
-                    <span class="link" title="이동">실시간 환경 감시</span>
+                    <span class="link">협동로봇</span>
                     <!-- <span class="del" title="삭제">×</span> -->
                   </div>
                 </div>
-                <!--//대시보드명-->
-                <!--대시보드 상세정보-->
+                <!--//디바이스명-->
+                <!--디바이스 상세정보-->
                 <div class="rows">
                   <div class="detail">
-                    <span>구분 : 환경</span>
+                    <span>모델명 : 협동로봇</span>
                     <span class="dash">|</span>
                   </div>
                   <div class="detail">
-                    <span>작업자 : wis201*</span>
+                    <span>디바이스ID : wis201D1553244698210</span>
                     <span class="dash">|</span>
                   </div>
                   <div class="detail">
-                    <span>최근 수정일자 : 2019-04-01</span>
+                    <span>등록일자 : 2019-04-01</span>
                   </div>
                 </div>
-                <!--//대시보드 상세정보-->
-                <!--대시보드 수정-->
+                <!--//디바이스 상세정보-->
+                <!--디바이스 수정-->
                 <div class="rows text-xs-right">
-                  <button class="btn-gray-30" title="수정">수정</button>
-                  <button class="btn-gray-30" title="삭제">삭제</button>
+                  <button class="btn-white-30" title="센서보기">센서보기</button>
+                  <button class="btn-gray-30" title="Capability 설정">Capability 설정</button>
                 </div>
-                <!--//대시보드 수정-->
+                <!--//디바이스 수정-->
               </v-card-text>
             </v-card>
           </v-flex>
@@ -57,12 +57,12 @@
 import HeaderComponent from '../components/Header.vue';
 
 export default {
-  name: 'DashbdList',
+  name: 'MyDevice',
   components: {
     HeaderComponent,
   },
   data: () => ({
-    title: '대시보드 목록',
+    title: '나의 디바이스',
     items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
   }),
 };

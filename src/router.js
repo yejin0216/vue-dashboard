@@ -24,8 +24,8 @@ export default new Router({
     },
     {
       path: '/devices',
-      name: 'MyDevices',
-      component: () => import('./views/MyDevices.vue'),
+      name: 'MyDevice',
+      component: () => import('./views/MyDevice.vue'),
     },
   ],
 });

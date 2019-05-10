@@ -1,0 +1,101 @@
+html {
+  font-family: $font-stack;
+  font-size: 14px;
+  color: $font-color;
+}
+
+*:focus {
+  outline: none !important;
+}
+
+a {
+  color: inherit;
+  text-decoration-line: none;
+  &:link,
+  &:visited {
+    text-decoration: none;
+  }
+}
+
+ul {
+  padding: initial;
+  li {
+    list-style: none;
+    cursor: pointer;
+  }
+}
+
+button {
+  margin: 0 2px;
+}
+.btn-white-30 {
+  height: 30px;
+  padding: 0 15px;
+  border-radius: 1px;
+  border: 1px solid #ccc;
+  background-color: $white-color;
+  font-size: 12px;
+  color: #666;
+  line-height: 28px;
+}
+.btn-gray-30 {
+  height: 30px;
+  padding: 0 15px;
+  border-radius: 1px;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  font-size: 12px;
+  color: #666;
+  line-height: 28px;
+}
+.btn-black-30 {
+  height: 30px;
+  padding: 0 15px;
+  border-radius: 1px;
+  border: 1px solid #333;
+  background-color: #333;
+  font-size: 12px;
+  color: $white-color;
+  line-height: 28px;
+}
+
+.form {
+  display: inline-block;
+  font-size: 12px;
+  height: 30px;
+  line-height: 1;
+  padding: 5px 12px;
+  color: #454545;
+  background-color: $white-color;
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  box-shadow: none;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  -webkit-appearance: menulist-button;
+}
+
+.rows {
+  padding: 4px 6px;
+}
+
+.dash {
+  color: #e5e5e5;
+  font-size: 12px;
+  margin: 0 10px;
+  vertical-align: text-top;
+}
+
+.link {
+  &:hover {
+    text-decoration-line: underline;
+  }
+}
+
+/* vutify */
+.material-icons {
+  cursor: pointer;
+}
+.v-card {
+  border: 1px solid #ddd !important;
+  //cursor: pointer;
+}

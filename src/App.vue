@@ -12,47 +12,20 @@ export default {
   components: {
     GNBComponent,
   },
-  data() {
-    return {
-      //
-    };
-  },
+  data: () => ({
+    // empty
+  }),
 };
 </script>
 
 <style lang="scss">
-  html {
-    font-family: $font-stack;
-    font-size: 14px;
-    color: $font-color;
-  }
-  ul {
+.subcontents {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-top: 50px;
+  .container {
     padding: initial;
-    li {
-      list-style: none;
-      cursor: pointer;
-    }
+    color: $font-color !important;
   }
-  a {
-    color: inherit;
-    text-decoration-line: none;
-  }
-  .material-icons {
-    cursor: pointer;
-  }
-  .subcontents {
-    max-width: 900px;
-    margin: 0 auto;
-    .container {
-      padding: initial;
-      color: $font-color !important;
-    }
-  }
-  .v-card {
-    border: 1px solid #ddd !important;
-    cursor: pointer;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+}
 </style>

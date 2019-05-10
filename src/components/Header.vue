@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div>
+    <div :class="{closed:!isOpened}">
       <span>{{navigation}}</span>
     </div>
     <slot></slot>
@@ -8,20 +8,32 @@
 </template>
 
 <script>
+import EventBus from '../events';
+
 export default {
   props: {
     navigation: String,
   },
-  data() {
-    return {};
+  created() {
+    EventBus.$on('toggleHeader', this.onReceive);
+  },
+  data: () => ({
+    isOpened: true,
+  }),
+  methods: {
+    onReceive(data) {
+      this.isOpened = data;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 header {
-  z-index: 1000;
+  position: fixed;
+  width: 100%;
   height: 50px;
+  z-index: 999;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   background-color: $white-color;
   div {
@@ -44,5 +56,8 @@ header {
       background-color: #2d2d2d;
     }
   }
+}
+.closed {
+  padding-left: 70px;
 }
 </style>

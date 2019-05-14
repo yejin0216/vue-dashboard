@@ -63,7 +63,6 @@ export default {
   },
   data: () => ({
     title: '대시보드 목록',
-    items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
   }),
 };
 </script>

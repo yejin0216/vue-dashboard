@@ -14,30 +14,21 @@
           <p>wis201* 님</p>
         </div>
         <ul class="menuItem">
-          <li
-            class="bookmark"
-            @click="navigate('Bookmark')"
-            :class="{active:isSelected=='Bookmark'}"
-          >
+          <li @click="navigate('Bookmark')" :class="{active:isSelected == 'Bookmark'}">
             <span class="menuIcon">
               <font-awesome-icon :icon="['far', 'bookmark']"/>
             </span>
             <span>즐겨찾기</span>
           </li>
-          <li
-            class="devices"
-            @click="navigate('MyDevice')"
-            :class="{active:isSelected=='MyDevice'}"
-          >
+          <li @click="navigate('MyDevice')" :class="{active:isSelected == 'MyDevice'}">
             <span class="menuIcon">
               <font-awesome-icon :icon="['fas', 'tablet-alt']"/>
             </span>
             <span>나의 디바이스</span>
           </li>
           <li
-            class="list"
             @click="navigate('DashbdList')"
-            :class="{active:isSelected=='DashbdList'}"
+            :class="{active:isSelected == 'DashbdList' || isSelected == 'Dashbd'}"
           >
             <span class="menuIcon">
               <font-awesome-icon :icon="['fas', 'chart-bar']"/>
@@ -46,24 +37,27 @@
           </li>
         </ul>
         <ul class="list-children">
-          <li>대시보드 테스트</li>
-          <li>대시보드 테스트</li>
-          <li>대시보드 테스트</li>
+          <li
+            v-for="item in list"
+            :key="item.sequence"
+            @click="navigate('Dashbd', item)"
+            :class="{active:sequence == `${item.sequence}`}"
+          >{{item.name}}</li>
         </ul>
         <ul class="menuItem">
-          <li>
+          <li @click="navigate('EventLog')" :class="{active:isSelected == 'EventLog'}">
             <span class="menuIcon">
               <font-awesome-icon :icon="['fas', 'list-ol']"/>
             </span>
             <span>이벤트 타임라인</span>
           </li>
-          <li>
+          <li @click="navigate('Guide')" :class="{active:isSelected == 'Guide'}">
             <span class="menuIcon">
               <font-awesome-icon :icon="['fas', 'info-circle']"/>
             </span>
             <span>이용 가이드</span>
           </li>
-          <li>
+          <li @click="navigate('Settings')" :class="{active:isSelected == 'Settings'}">
             <span class="menuIcon">
               <font-awesome-icon :icon="['fas', 'cog']"/>
             </span>
@@ -101,16 +95,34 @@ export default {
     closed: '',
     hide: '',
     expanded: '',
+    sequence: '',
+    list: [
+      { name: 'Dashboard1', sequence: 1 },
+      { name: 'Dashboard2', sequence: 2 },
+    ],
   }),
   methods: {
-    navigate(path) {
-      this.$router.push({ name: path });
-      this.isSelected = path;
+    navigate(path, item) {
+      if (item) {
+        this.$router.push({
+          name: path,
+          params: { sequence: item.sequence, name: item.name },
+        });
+        this.sequence = item.sequence;
+      } else {
+        this.$router.push({ name: path });
+        this.sequence = '';
+      }
     },
     toggleNav() {
       this.isOpened = !this.isOpened;
       EventBus.$emit('toggleHeader', this.isOpened); // 이벤트 발행
     },
+  },
+  updated() {
+    // Menu Class 변경
+    this.isSelected = this.$route.name;
+    this.sequence = this.$route.params.sequence || '';
   },
 };
 </script>
@@ -175,6 +187,10 @@ nav {
       white-space: nowrap;
       font-size: 13px;
       color: $white-color;
+    }
+    li.active {
+      border-left: 0.2em solid $primary-color;
+      background-color: rgba(159, 159, 159, 0.05);
     }
   }
 }

@@ -1,7 +1,8 @@
 html {
   font-family: $font-stack;
-  font-size: 14px;
+  font-size: $font-normal-size;
   color: $font-color;
+  overflow: auto;
 }
 
 *:focus {
@@ -25,6 +26,7 @@ ul {
   }
 }
 
+/* 버튼 스타일 */
 button {
   margin: 0 2px;
 }
@@ -59,36 +61,41 @@ button {
   line-height: 28px;
 }
 
-.form {
+/* 입력폼 */
+%form-control {
   display: inline-block;
-  font-size: 12px;
   height: 30px;
   line-height: 1;
   padding: 5px 12px;
-  color: #454545;
   background-color: $white-color;
   border: 1px solid #cfcfcf;
   border-radius: 2px;
   box-shadow: none;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.form {
+  @extend %form-control;
+  font-size: $font-normal-size;
+}
+.selectBox {
+  @extend %form-control;
   -webkit-appearance: menulist-button;
+  font-size: $font-small-size;
 }
 
-.rows {
-  padding: 4px 6px;
-}
 
-.dash {
-  color: #e5e5e5;
-  font-size: 12px;
-  margin: 0 10px;
-  vertical-align: text-top;
+/* 스크롤바 */
+::-webkit-scrollbar {
+  width: 8px;
+  border: 3px solid transparent;
+  background: transparent;
 }
-
-.link {
-  &:hover {
-    text-decoration-line: underline;
-  }
+::-webkit-scrollbar-thumb{
+  width: 8px;
+  background: rgba(234,234,234,.2);
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.3);
 }
 
 /* vutify */
@@ -97,5 +104,5 @@ button {
 }
 .v-card {
   border: 1px solid #ddd !important;
-  //cursor: pointer;
+  color: inherit !important;
 }

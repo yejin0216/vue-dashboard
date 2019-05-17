@@ -9,58 +9,55 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'list',
-      component: () => import('./views/DashbdList.vue'),
-      meta: { requiresAuth: true },
+      redirect: { name: 'Login' }, // 로그인
     },
     {
-      path: '/bookmark',
-      name: 'Bookmark',
-      component: () => import('./views/Bookmark.vue'),
+      path: '/auth',
+      name: 'Login',
+      component: () => import('./views/Login.vue'), // 로그인
+    },
+    {
+      path: '/bookmarks',
+      name: 'Bookmarks',
+      component: () => import('./views/Bookmarks.vue'), // 즐겨찾기
       meta: { requiresAuth: true },
     },
     {
       path: '/list',
-      name: 'DashbdList',
-      component: () => import('./views/DashbdList.vue'),
+      name: 'DashboardList',
+      component: () => import('./views/DashboardList.vue'), // 대시보드목록
       meta: { requiresAuth: true },
     },
     {
       path: '/devices',
-      name: 'MyDevice',
-      component: () => import('./views/MyDevice.vue'),
+      name: 'DeviceList',
+      component: () => import('./views/DeviceList.vue'), // 나의 디바이스
       meta: { requiresAuth: true },
     },
     {
       path: '/event',
       name: 'EventLog',
-      component: () => import('./views/EventLog.vue'),
+      component: () => import('./views/EventLog.vue'), // 이벤트 타임라인
       meta: { requiresAuth: true },
     },
     {
       path: '/guide',
       name: 'Guide',
-      component: () => import('./views/Guide.vue'),
+      component: () => import('./views/Guide.vue'), // 이용 가이드
       meta: { requiresAuth: true },
     },
     {
       path: '/settings',
       name: 'Settings',
-      component: () => import('./views/Settings.vue'),
+      component: () => import('./views/Settings.vue'), // 관리
       meta: { requiresAuth: true },
     },
     {
       path: '/dashboard/:sequence',
-      name: 'Dashbd',
+      name: 'Dashboard',
       props: true,
-      component: () => import('./views/Dashbd.vue'),
+      component: () => import('./views/Dashboard.vue'),
       meta: { requiresAuth: true },
-    },
-    {
-      path: '/auth',
-      name: 'Login',
-      component: () => import('./views/Login.vue'),
-      meta: { requiresAuth: false },
     },
   ],
 });

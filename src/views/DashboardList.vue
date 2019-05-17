@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="page">
     <HeaderComponent :navigation="title">
       <!-- Navigation(현재 위치) -->
     </HeaderComponent>
     <article class="subcontents">
       <div class="condition text-xs-right">
-        <select class="form">
+        <select class="selectBox">
           <option value>최근 수정순</option>
           <option value>대시보드 이름순</option>
         </select>
@@ -16,30 +16,30 @@
             <v-card flat>
               <v-card-text>
                 <!--대시보드명-->
-                <div class="rows">
+                <div class="row">
                   <div class="summary">
-                    <span class="link" title="이동">실시간 환경 감시</span>
+                    <span title="이동">실시간 환경 감시</span>
                     <!-- <span class="del" title="삭제">×</span> -->
                   </div>
                 </div>
                 <!--//대시보드명-->
                 <!--대시보드 상세정보-->
-                <div class="rows">
-                  <div class="detail">
+                <div class="row">
+                  <div class="detail column">
                     <span>구분 : 환경</span>
                     <span class="dash">|</span>
                   </div>
-                  <div class="detail">
+                  <div class="detail column">
                     <span>작업자 : wis201*</span>
                     <span class="dash">|</span>
                   </div>
-                  <div class="detail">
-                    <span>최근 수정일자 : 2019-04-01</span>
+                  <div class="detail column">
+                    <span>최근수정일자 : 2019-04-01</span>
                   </div>
                 </div>
                 <!--//대시보드 상세정보-->
                 <!--대시보드 수정-->
-                <div class="rows text-xs-right">
+                <div class="row text-xs-right">
                   <button class="btn-gray-30" title="수정">수정</button>
                   <button class="btn-gray-30" title="삭제">삭제</button>
                 </div>
@@ -57,39 +57,21 @@
 import HeaderComponent from '../components/Header.vue';
 
 export default {
-  name: 'DashbdList',
+  name: 'DashboardList',
   components: {
     HeaderComponent,
   },
   data: () => ({
     title: '대시보드 목록',
   }),
+  methods: {
+    navigate() {
+      /* 선택한 대시보드로 이동한다. */
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.condition {
-  border-bottom: 1px solid #333;
-  padding: 10px 0;
-  margin-bottom: 20px;
-}
-.summary {
-  color: #454545;
-  font-weight: 600;
-  font-size: initial;
-  span {
-    cursor: pointer;
-  }
-  .del {
-    float: right;
-  }
-}
-.detail {
-  color: #666;
-  font-size: 14px;
-  display: inline-block;
-  span {
-    color: #999999;
-  }
-}
+@import "../assets/scss/_contents.scss";
 </style>

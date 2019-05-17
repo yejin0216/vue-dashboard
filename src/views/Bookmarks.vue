@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <HeaderComponent :navigation="title">
       <!-- Navigation(현재 위치) -->
     </HeaderComponent>
@@ -9,7 +9,7 @@
         <v-layout row wrap>
           <v-flex v-for="i in 5" :key="`4${i}`" sm4 xs12>
             <v-card flat @mouseover="mouseon(`${i}`)" @mouseleave="mouseoff()">
-              <div :class="[{ expanded:`${i}`==isSelected }, image ]">
+              <div :class="[{ expanded:`${i}`==isSelected }, typeIcon ]">
                 <v-img :src="require('../assets/images/environment_bookmark.png')"></v-img>
               </div>
               <v-card-text class="text-xs-center">
@@ -23,19 +23,22 @@
                   <div class="detail">
                     <p>구분</p>
                     <p>
-                      <span class="dash">|</span>환경
+                      <span class="dash">|</span>
+                      <span>환경</span>
                     </p>
                   </div>
                   <div class="detail">
                     <p>작업자</p>
                     <p>
-                      <span class="dash">|</span>wis201*
+                      <span class="dash">|</span>
+                      <span>wis201*</span>
                     </p>
                   </div>
                   <div class="detail">
                     <p>업데이트</p>
                     <p>
-                      <span class="dash">|</span>2019-04-01
+                      <span class="dash">|</span>
+                      <span>2019-04-01</span>
                     </p>
                   </div>
                 </div>
@@ -52,7 +55,7 @@
 import HeaderComponent from '../components/Header.vue';
 
 export default {
-  name: 'Bookmark',
+  name: 'Bookmarks',
   components: {
     HeaderComponent,
   },
@@ -62,7 +65,7 @@ export default {
     isSelected: 0,
     expanded: '',
     summary: 'summary',
-    image: 'image',
+    typeIcon: 'typeIcon',
   }),
   methods: {
     navigate() {
@@ -79,31 +82,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.condition {
-  border-bottom: 1px solid #333;
-  padding: 10px 5px;
-  margin-bottom: 20px;
+@import "../assets/scss/_contents.scss";
+
+.v-card {
+  cursor: pointer;
 }
-.summary {
-  color: #454545;
-  font-weight: 600;
-}
-.image {
+.typeIcon {
   max-height: 80px;
   max-width: 80px;
   margin: 30px auto 5px;
 }
-.detail {
-  color: #666;
-  font-size: 13px;
-  p {
-    display: inline-block;
-    margin-bottom: initial;
-    width: 50%;
-    span {
-      color: #ccc;
-      margin-right: 10px;
-    }
+p {
+  display: inline-block;
+  margin-bottom: initial;
+  width: 50%;
+  .dash {
+    margin: 0 10px !important;
   }
 }
 .active {
@@ -114,8 +108,5 @@ export default {
   max-width: 85px;
   margin: 30px auto 0px;
   transition-duration: 0.1s;
-}
-v-card {
-  cursor: pointer;
 }
 </style>

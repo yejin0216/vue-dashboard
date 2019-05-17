@@ -1,0 +1,44 @@
+/* 각 메뉴 페이지 레이아웃 */
+.page {
+  width: 100%;
+  .subcontents {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 50px;
+    .condition {
+      border-bottom: 1px solid #333;
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+    .container {
+      padding: initial;
+      color: $font-color !important;
+    }
+  }
+}
+.row {
+  padding: 4px 6px;
+}
+.column {
+  display: inline-block;
+}
+.summary {
+  font-weight: 600;
+  font-size: initial;
+}
+.detail {
+  color: #666;
+  font-size: 13px;
+}
+.dash {
+  color: #e5e5e5;
+  font-size: 12px;
+  margin: 0 10px;
+  vertical-align: text-top;
+}
+.link {
+  cursor: pointer;
+  &:hover {
+    text-decoration-line: underline;
+  }
+}

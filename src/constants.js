@@ -1,0 +1,9 @@
+const AUTH_API_PATH = 'https://iotmakers.kt.com';
+const BASE_API_PATH = `${AUTH_API_PATH}/api`;
+const INIT_TOKEN = 'MjZiZWMxOGNiNjg0NGU2ZWJlYzYxYmVhNTZlOWIxZDExNDMyMjA2OTg4OTU0:YzI4NTkxOWQxNjdmNDk1YzgyNTg4OWFiZTBiYTcxMGQxNDMyMjA2OTg4OTU0';
+
+export {
+  AUTH_API_PATH,
+  BASE_API_PATH,
+  INIT_TOKEN,
+};

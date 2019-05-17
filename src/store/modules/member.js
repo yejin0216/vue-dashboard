@@ -1,10 +1,11 @@
 export default {
+  namespaced: true,
   state: {
     svcTgtSeq: [],
-    mbrSeq: null,
-    mbrId: null,
-    mbrClas: null,
-    accessToken: null,
+    mbrSeq: '',
+    mbrId: '',
+    mbrClas: '',
+    accessToken: '',
   },
   mutations: {
     addMemberInfo(state, payload) {
@@ -17,10 +18,10 @@ export default {
   /* eslint-disable */
   actions: {
     login(store, payload) {
-      store.commit(addMemberInfo, payload);
+      store.commit("addMemberInfo", payload);
     },
     logout(store, payload) {
-      store.commit(removeMemberInfo, payload);
+      store.commit("removeMemberInfo", payload);
     }
   },
   /* eslint-disable */

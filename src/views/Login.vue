@@ -52,7 +52,6 @@
       </p>
       <p>이 사이트는 Chrome 브라우저에 최적화 되어 있습니다.</p>
     </div>
-    <message-box :toggle="toggle" :headline="headline" :contents="contents"></message-box>
   </div>
 </template>
 
@@ -79,15 +78,22 @@ export default {
       loginAPI
         .getAccessToken(param)
         .then((response) => {
-          console.log(response);
+          if (response.status === 200) {
+            self.checkout(response.data.access_token);
+          }
         })
         .catch((error) => {
           if (error) {
-            self.headline = '로그인 실패';
-            self.contents = '1회 로그인에 실패했습니다.\n비밀번호 5회 오류시 로그인이 차단됩니다.';
-            self.toggle = true;
+            AlertModal.show(
+              'info',
+              '로그인 실패',
+              '아이디 또는 비밀번호를 다시 확인하세요.',
+            );
           }
         });
+    },
+    checkout(token) {
+      this.$store.dispatch('member/login', token);
     },
   },
 };
@@ -100,7 +106,7 @@ export default {
   min-height: 100%;
   .box {
     width: 404px;
-    min-height: 500px;
+    //min-height: 500px;
     top: 50%;
     left: 50%;
     position: absolute;

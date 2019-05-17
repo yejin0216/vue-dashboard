@@ -122,7 +122,7 @@ export default {
     },
     toggle() {
       this.isOpened = !this.isOpened;
-      this.$bus.$emit('toggleHeader', this.isOpened); // 이벤트 발행
+      $bus.$emit('toggleHeader', this.isOpened); // 이벤트 발행
     },
   },
   updated() {
@@ -142,7 +142,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import "./assets/scss/_variables.scss";
+@import "./assets/scss/_theme.scss";
+
 .wrapper {
   width: 100%;
   height: 100%;

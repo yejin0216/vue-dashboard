@@ -1,6 +1,6 @@
 <template>
-  <header>
-    <div class="header" :class="{closed:!isOpened}">
+  <header :class="{closed:!isOpened}">
+    <div class="header">
       <div class="navigation">
         <span>{{navigation}}</span>
       </div>
@@ -15,10 +15,11 @@ export default {
     navigation: String,
   },
   created() {
-    this.$bus.$on('toggleHeader', this.onReceive);
+    $bus.$on('toggleHeader', this.onReceive);
   },
   data: () => ({
     isOpened: true,
+    closed: false,
   }),
   methods: {
     onReceive(data) {
@@ -61,6 +62,6 @@ header {
   }
 }
 .closed {
-  padding-left: 50px;
+  padding-left: 70px;
 }
 </style>

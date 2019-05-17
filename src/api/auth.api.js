@@ -40,7 +40,7 @@ const serialize = (data) => {
 /**
  * IoTMakers GW 로그인
  */
-const getAccessToken = param => this.$axios.post(
+const getAccessToken = param => $axios.post(
   `${AUTH_API_PATH}/oauth/token`,
   serialize(param),
   {
@@ -51,6 +51,6 @@ const getAccessToken = param => this.$axios.post(
   },
 );
 
-export default {
-  getAccessToken,
+export {
+  getAccessToken
 };

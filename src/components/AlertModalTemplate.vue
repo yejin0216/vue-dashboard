@@ -1,9 +1,9 @@
 <template>
   <v-dialog v-model="dialog" width="450">
     <v-card>
-      <v-card-title class="headline grey lighten-2" primary-title>{{headline}}</v-card-title>
+      <v-card-title class="headline grey lighten-2" primary-title>{{title}}</v-card-title>
       <v-card-text>
-        <template v-for="(c, index) in content">
+        <template v-for="(c, index) in contents">
           {{ c }}
           <br :key="index">
         </template>
@@ -21,28 +21,16 @@
 
 <script>
 export default {
-  name: 'MessageBox',
+  name: 'AlertTemplate',
   data: () => ({
     dialog: false,
+    type: '',
+    title: '',
+    message: '',
   }),
-  props: {
-    type: {
-      type: String,
-      default: 'info',
-    },
-    toogle: {
-      type: Boolean,
-    },
-    headline: {
-      type: String,
-    },
-    contents: {
-      type: [String, Object],
-    },
-  },
   computed: {
-    content() {
-      return this.contents.split('\n');
+    contents() {
+      return this.message.split('\n');
     },
   },
 };

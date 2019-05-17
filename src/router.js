@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import store from './store';
 
 Vue.use(Router);
 
@@ -64,9 +65,16 @@ const router = new Router({
 
 // Meta 정보 확인
 router.beforeEach((to, from, next) => {
+  // 접근오류
+  if (to.name == null) {
+    next({ path: '/' });// redirection 404 페이지 개발 필요!!!
+  }
+
+  // Access Token 확인
   const status = to.matched.some(data => data.meta.requiresAuth);
   if (status) {
     // 로그인 상태
+    console.log(store.state);
     next();
   } else {
     next();

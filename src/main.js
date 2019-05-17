@@ -27,6 +27,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import store from './store';
 import router from './router';
+import AlertModal from './plugins/alertModal';
 
 import App from './App.vue';
 
@@ -34,10 +35,11 @@ import App from './App.vue';
 library.add(faTabletAlt, faChartBar, faListOl, faInfoCircle, faCog, faBell, faPowerOff, faPlus, farBookmark, faBookmark, farTrashAlt, farCopy, faEnvelopeOpenText);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
+/* Alert Modal */
+Vue.use(AlertModal);
+
 /* promise polyfill for IE */
 ES6Promise.polyfill();
-
-Vue.config.productionTip = false;
 
 /* axios */
 window.$axios = axios;
@@ -45,6 +47,8 @@ window.$axios = axios;
 /* event bus */
 const eventBus = new Vue();
 window.$bus = eventBus;
+
+Vue.config.productionTip = false;
 
 /* mount */
 new Vue({

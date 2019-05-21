@@ -6,8 +6,8 @@
     <article class="subcontents">
       <div class="condition text-xs-right">
         <select class="selectBox">
-          <option value>최근 등록일순</option>
-          <option value>디바이스 이름순</option>
+          <option value>등록일순</option>
+          <option value>이름순</option>
         </select>
       </div>
       <v-container grid-list-md>

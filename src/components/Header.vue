@@ -33,10 +33,10 @@ export default {
 
 <style lang="scss" scoped>
 header {
-  position: fixed;
-  width: inherit;
+  //position: fixed;
+  //width: inherit;
   height: 50px;
-  z-index: 999;
+  //z-index: 999;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   background-color: $white-color;
   .header {

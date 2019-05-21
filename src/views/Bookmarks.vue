@@ -4,7 +4,13 @@
       <!-- Navigation(현재 위치) -->
     </HeaderComponent>
     <article class="subcontents">
-      <div class="condition"></div>
+      <div class="condition text-xs-right">
+        <select class="selectBox">
+          <option value="name">등록일순</option>
+          <option value="date">이름순</option>
+          <option value="name">구분순</option>
+        </select>
+      </div>
       <v-container grid-list-md>
         <v-layout row wrap>
           <v-flex v-for="i in 5" :key="`4${i}`" sm4 xs12>
@@ -35,7 +41,7 @@
                     </p>
                   </div>
                   <div class="detail">
-                    <p>업데이트</p>
+                    <p>등록일자</p>
                     <p>
                       <span class="dash">|</span>
                       <span>2019-04-01</span>

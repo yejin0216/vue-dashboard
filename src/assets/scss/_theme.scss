@@ -81,6 +81,7 @@ button {
   @extend %form-control;
   -webkit-appearance: menulist-button;
   font-size: $font-small-size;
+  min-width: 100px;
 }
 
 .expendable {

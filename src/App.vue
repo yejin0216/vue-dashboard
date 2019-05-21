@@ -215,7 +215,7 @@ footer {
 .content {
   //position: absolute;
   height: 100%;
-  width: 100%;
+  //width: 100%;
   min-height: 100%;
   flex: 3 0px;
   // margin-left: 220px;

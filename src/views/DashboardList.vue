@@ -6,8 +6,8 @@
     <article class="subcontents">
       <div class="condition text-xs-right">
         <select class="selectBox">
-          <option value>최근 수정순</option>
-          <option value>대시보드 이름순</option>
+          <option value>등록일순</option>
+          <option value>이름순</option>
         </select>
       </div>
       <v-container grid-list-md>
@@ -34,7 +34,7 @@
                     <span class="dash">|</span>
                   </div>
                   <div class="detail column">
-                    <span>최근수정일자 : 2019-04-01</span>
+                    <span>등록일자 : 2019-04-01</span>
                   </div>
                 </div>
                 <!--//대시보드 상세정보-->

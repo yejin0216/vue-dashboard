@@ -75,7 +75,7 @@ router.beforeEach((to, from, next) => {
   const status = to.matched.some(data => data.meta.requiresAuth);
   if (to.name === 'Login') {
     next();
-  } else if (status && sessionStorage.getItem('accessToken') && store.getters['member/getExpYn']) {
+  } else if (status && sessionStorage.getItem('accessToken') && !store.getters['member/getExpYn']) {
     next();
   } else {
     next({ path: '/auth' });

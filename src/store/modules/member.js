@@ -46,9 +46,9 @@ export default {
       console.log(Date.now())
       console.log(state.expTime)
       if (Date.now() > state.expTime) {
-        return false;
+        return true;
       }
-      return true;
+      return false;
     }
   }
   /* eslint-disable */

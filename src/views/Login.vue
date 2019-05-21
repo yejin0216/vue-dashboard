@@ -88,7 +88,7 @@ export default {
           );
         }
       };
-      login(param);
+      login();
     },
     // 로그인 성공 후 홈으로 이동
     moveToHome() {

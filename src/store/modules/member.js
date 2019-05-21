@@ -8,17 +8,16 @@ export default {
   namespaced: true,
   state: {
     accessToken: sessionStorage.getItem('accessToken') || null,
-    expTime: 0,
+    expTime: sessionStorage.getItem('expTime') || 0,
     svcTgtSeq: [],
     mbrSeq: null,
     mbrId: null,
-    mbrClas: null,
   },
   /* eslint-disable */
   mutations: {
     addMemberInfo(state, payload) {
       state.accessToken = payload.access_token;
-      state.expTime = payload.pub_time + payload.expires_in;
+      state.expTime = payload.expTime;
     },
     removeMemberInfo(state, payload) {
       state.accessToken = null;
@@ -29,21 +28,23 @@ export default {
     login(store, payload) {
       store.commit("addMemberInfo", payload);
       // sessionStorage에 Token 을 추가한다. 
+      let expTime = payload.pub_time + payload.expires_in;
       sessionStorage.setItem("accessToken", payload.access_token);
+      sessionStorage.setItem("expTime", expTime);
       // 모든 HTTP 요청 헤더에 Authorization 을 추가한다.
-      axios.defaults.headers.common['Authorization'] = `Bearer ${payload.access_token}`;
+      axios.defaults.headers.common["Authorization"] = `Bearer ${payload.access_token}`;
     },
     logout(store, payload) {
       store.commit("removeMemberInfo", payload);
       sessionStorage.removeItem("accessToken");
-      axios.defaults.headers.common['Authorization'] = null;
+      sessionStorage.removeItem("expTime");
+      axios.defaults.headers.common["Authorization"] = null;
     }
   },
   getters: {
-    getAccessToken(state) {
-      return state.accessToken;
-    },
     getExpYn(state) {
+      console.log(Date.now())
+      console.log(state.expTime)
       if (Date.now() > state.expTime) {
         return false;
       }

@@ -78,7 +78,7 @@ router.beforeEach((to, from, next) => {
   } else if (status && sessionStorage.getItem('accessToken') && store.getters['member/getExpYn']) {
     next();
   } else {
-    next('/auth');
+    next({ path: '/auth' });
     store.dispatch('member/logout');
   }
 

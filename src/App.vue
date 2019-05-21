@@ -3,84 +3,82 @@
     <v-app>
       <!-- GNB -->
       <div class="wrapper">
-        <nav :class="{closed:!isOpened}" v-show="isNotExpired">
-          <div class="expendable" @click="toggle()">
+        <nav v-show="isExpanded">
+          <div class="expendable" @click="toggle">
             <span class="material-icons">menu</span>
           </div>
-          <span :class="{hide:!isOpened}">
-            <div class="memberInfo">
-              <img
-                id="profile"
-                src="https://images.kbench.com/kbench/article/2018_06/k188920p1n1.jpg"
-                alt="profile"
-              >
-              <p>wis201* 님</p>
-            </div>
-            <ul class="menuItem">
-              <li @click="navigate('Bookmarks')" :class="{active:isSelected == 'Bookmarks'}">
-                <span class="menuIcon">
-                  <font-awesome-icon :icon="['far', 'bookmark']"/>
-                </span>
-                <span>즐겨찾기</span>
+          <div class="memberInfo">
+            <img
+              id="profile"
+              src="https://images.kbench.com/kbench/article/2018_06/k188920p1n1.jpg"
+              alt="profile"
+            >
+            <p>wis201* 님</p>
+          </div>
+          <ul class="menuItem">
+            <li @click="navigate('Bookmarks')" :class="{active:isSelected == 'Bookmarks'}">
+              <span class="menuIcon">
+                <font-awesome-icon :icon="['far', 'bookmark']"/>
+              </span>
+              <span>즐겨찾기</span>
+            </li>
+            <li @click="navigate('DeviceList')" :class="{active:isSelected == 'DeviceList'}">
+              <span class="menuIcon">
+                <font-awesome-icon :icon="['fas', 'tablet-alt']"/>
+              </span>
+              <span>나의 디바이스</span>
+            </li>
+            <li
+              @click="navigate('DashboardList')"
+              :class="{active:isSelected == 'DashboardList' || isSelected == 'Dashboard'}"
+            >
+              <span class="menuIcon">
+                <font-awesome-icon :icon="['fas', 'chart-bar']"/>
+              </span>
+              <span>대시보드</span>
+            </li>
+          </ul>
+          <ul class="list-children">
+            <li
+              v-for="item in list"
+              :key="item.sequence"
+              @click="navigate('Dashboard', item)"
+              :class="{active:sequence == `${item.sequence}`}"
+            >{{item.name}}</li>
+          </ul>
+          <ul class="menuItem">
+            <li @click="navigate('EventLog')" :class="{active:isSelected == 'EventLog'}">
+              <span class="menuIcon">
+                <font-awesome-icon :icon="['fas', 'list-ol']"/>
+              </span>
+              <span>이벤트 타임라인</span>
+            </li>
+            <li @click="navigate('Guide')" :class="{active:isSelected == 'Guide'}">
+              <span class="menuIcon">
+                <font-awesome-icon :icon="['fas', 'info-circle']"/>
+              </span>
+              <span>이용 가이드</span>
+            </li>
+            <li @click="navigate('Settings')" :class="{active:isSelected == 'Settings'}">
+              <span class="menuIcon">
+                <font-awesome-icon :icon="['fas', 'cog']"/>
+              </span>
+              <span>관리</span>
+            </li>
+          </ul>
+          <footer>
+            <ul>
+              <li class="footerItem">
+                <font-awesome-icon :icon="['fas', 'bell']"/>
               </li>
-              <li @click="navigate('DeviceList')" :class="{active:isSelected == 'DeviceList'}">
-                <span class="menuIcon">
-                  <font-awesome-icon :icon="['fas', 'tablet-alt']"/>
-                </span>
-                <span>나의 디바이스</span>
-              </li>
-              <li
-                @click="navigate('DashboardList')"
-                :class="{active:isSelected == 'DashboardList' || isSelected == 'Dashboard'}"
-              >
-                <span class="menuIcon">
-                  <font-awesome-icon :icon="['fas', 'chart-bar']"/>
-                </span>
-                <span>대시보드</span>
+              <li class="seperator">|</li>
+              <li class="footerItem">
+                <font-awesome-icon :icon="['fas', 'power-off']"/>
               </li>
             </ul>
-            <ul class="list-children">
-              <li
-                v-for="item in list"
-                :key="item.sequence"
-                @click="navigate('Dashboard', item)"
-                :class="{active:sequence == `${item.sequence}`}"
-              >{{item.name}}</li>
-            </ul>
-            <ul class="menuItem">
-              <li @click="navigate('EventLog')" :class="{active:isSelected == 'EventLog'}">
-                <span class="menuIcon">
-                  <font-awesome-icon :icon="['fas', 'list-ol']"/>
-                </span>
-                <span>이벤트 타임라인</span>
-              </li>
-              <li @click="navigate('Guide')" :class="{active:isSelected == 'Guide'}">
-                <span class="menuIcon">
-                  <font-awesome-icon :icon="['fas', 'info-circle']"/>
-                </span>
-                <span>이용 가이드</span>
-              </li>
-              <li @click="navigate('Settings')" :class="{active:isSelected == 'Settings'}">
-                <span class="menuIcon">
-                  <font-awesome-icon :icon="['fas', 'cog']"/>
-                </span>
-                <span>관리</span>
-              </li>
-            </ul>
-            <footer>
-              <ul>
-                <li class="footerItem">
-                  <font-awesome-icon :icon="['fas', 'bell']"/>
-                </li>
-                <li class="seperator">|</li>
-                <li class="footerItem">
-                  <font-awesome-icon :icon="['fas', 'power-off']"/>
-                </li>
-              </ul>
-            </footer>
-          </span>
+          </footer>
         </nav>
-        <div class="content" :class="{expanded:!isOpened}">
+        <div class="content">
           <!-- Dynamic Content View -->
           <router-view></router-view>
           <!--// Dynamic Content View -->
@@ -92,21 +90,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'App',
   data: () => ({
     isSelected: '',
-    isNotExpired: false,
-    isOpened: true,
-    closed: '',
-    hide: '',
-    expanded: '',
     sequence: '',
     list: [
       { name: 'Dashboard1', sequence: 1 },
       { name: 'Dashboard2', sequence: 2 },
     ],
   }),
+  computed: mapState('layout', ['isExpanded']), // navigation style은 veux store에서 관리한다.
   methods: {
     navigate(path, item) {
       if (item) {
@@ -121,20 +117,13 @@ export default {
       }
     },
     toggle() {
-      this.isOpened = !this.isOpened;
-      $bus.$emit('toggleHeader', this.isOpened); // 이벤트 발행
+      this.$store.dispatch('layout/updateIsOpened', !this.isExpanded);
     },
   },
   updated() {
     const path = this.$route.name;
-    if (path === 'Login') {
-      // 로그인 페이지
-      this.isNotExpired = false;
-      this.isOpened = false;
-      // this.toggle();
-    } else {
+    if (path !== 'Login') {
       // Menu Class 변경
-      this.isNotExpired = true;
       this.isSelected = path;
       this.sequence = this.$route.params.sequence || '';
     }
@@ -142,30 +131,19 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import "./assets/scss/_variables.scss";
-@import "./assets/scss/_theme.scss";
-
+<style lang="scss" scoped>
 .wrapper {
+  display: flex;
   width: 100%;
   height: 100%;
 }
 nav {
-  position: fixed;
-  z-index: 1000;
+  //position: fixed;
+  //z-index: 1000;
   width: 220px;
+  justify-content: space-between;
   height: 100%;
   background-color: $secondary-color;
-  .expendable {
-    background-color: $primary-color;
-    height: 50px;
-    cursor: pointer;
-    .material-icons {
-      color: $white-color;
-      font-size: 30px;
-      padding: 10px;
-    }
-  }
   .memberInfo {
     background-color: $secondary-variant-color;
     height: 160px;
@@ -235,11 +213,12 @@ footer {
   }
 }
 .content {
-  position: absolute;
+  //position: absolute;
   height: 100%;
-  width: calc(100% - 220px);
+  width: 100%;
   min-height: 100%;
-  margin-left: 220px;
+  flex: 3 0px;
+  // margin-left: 220px;
   background-color: #f1f1f1;
 }
 #profile {
@@ -253,9 +232,6 @@ footer {
 .closed {
   width: 50px;
   height: auto;
-}
-.hide {
-  display: none;
 }
 .expanded {
   width: 100%;

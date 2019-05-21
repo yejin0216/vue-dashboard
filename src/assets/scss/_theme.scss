@@ -1,10 +1,3 @@
-html {
-  font-family: $font-stack;
-  font-size: $font-normal-size;
-  color: $font-color;
-  overflow: auto;
-}
-
 *:focus {
   outline: none !important;
 }
@@ -24,6 +17,13 @@ ul {
     list-style: none;
     cursor: pointer;
   }
+}
+
+.dash {
+  color: #e5e5e5;
+  font-size: 12px;
+  margin: 0 10px;
+  vertical-align: text-top;
 }
 
 /* 버튼 스타일 */
@@ -83,6 +83,16 @@ button {
   font-size: $font-small-size;
 }
 
+.expendable {
+  background-color: $primary-color;
+  height: 50px;
+  cursor: pointer;
+  .material-icons {
+    color: $white-color;
+    font-size: 30px;
+    padding: 10px;
+  }
+}
 
 /* 스크롤바 */
 ::-webkit-scrollbar {

@@ -27,7 +27,7 @@
           >
         </div>
         <div clsss="loginBtnGroup">
-          <button class="btn-login" title="로그인" @click="login">로그인</button>
+          <button class="btn-login" title="로그인" @click="onSubmit">로그인</button>
           <label for="saveId">
             <input type="checkbox" name="saveId" id="saveId">
             <span>아이디 기억하기</span>
@@ -63,37 +63,36 @@ export default {
   data: () => ({
     loginId: '',
     loginPwd: '',
-    toggle: false,
-    headline: '',
-    contents: '',
   }),
   methods: {
-    login() {
+    // 로그인
+    onSubmit() {
       const self = this;
-      const param = {
-        grant_type: 'password',
-        username: self.loginId,
-        password: self.loginPwd,
+      const login = async () => {
+        const param = {
+          grant_type: 'password',
+          username: self.loginId,
+          password: self.loginPwd,
+        };
+        const res = await loginAPI.getAccessToken(param);
+        if (res.status === 200) {
+          // success
+          this.$store.dispatch('member/login', res.data);
+          await this.moveToHome();
+        } else {
+          // fail
+          AlertModal.show(
+            'info',
+            '로그인 실패',
+            '아이디 또는 비밀번호를 다시 확인하세요.',
+          );
+        }
       };
-      loginAPI
-        .getAccessToken(param)
-        .then((response) => {
-          if (response.status === 200) {
-            self.checkout(response.data.access_token);
-          }
-        })
-        .catch((error) => {
-          if (error) {
-            AlertModal.show(
-              'info',
-              '로그인 실패',
-              '아이디 또는 비밀번호를 다시 확인하세요.',
-            );
-          }
-        });
+      login(param);
     },
-    checkout(token) {
-      this.$store.dispatch('member/login', token);
+    // 로그인 성공 후 홈으로 이동
+    moveToHome() {
+      this.$router.push({ name: 'DashboardList' });
     },
   },
 };
@@ -104,6 +103,7 @@ export default {
   background-image: url("../assets/images/home_con3.jpg");
   background-size: cover;
   min-height: 100%;
+  color: $font-color;
   .box {
     width: 404px;
     //min-height: 500px;

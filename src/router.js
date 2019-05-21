@@ -16,6 +16,7 @@ const router = new Router({
       path: '/auth',
       name: 'Login',
       component: () => import('./views/Login.vue'), // 로그인
+      meta: { requiresAuth: true },
     },
     {
       path: '/bookmarks',
@@ -70,15 +71,22 @@ router.beforeEach((to, from, next) => {
     next({ path: '/' });// redirection 404 페이지 개발 필요!!!
   }
 
-  // Access Token 확인
+  // 화면 이동시 토큰 체크
   const status = to.matched.some(data => data.meta.requiresAuth);
-  if (status) {
-    // 로그인 상태
-    console.log(store.state);
+  if (to.name === 'Login') {
+    next();
+  } else if (status && sessionStorage.getItem('accessToken') && store.getters['member/getExpYn']) {
     next();
   } else {
-    next();
-    // 상태가 만료된 경우
+    next('/auth');
+    store.dispatch('member/logout');
+  }
+
+  // 로그인 된 첫 화면에서는 메뉴를 보여준다.
+  if (to.name === 'Login') {
+    store.dispatch('layout/updateIsOpened', false);
+  } else {
+    store.dispatch('layout/updateIsOpened', true);
   }
 });
 

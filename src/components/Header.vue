@@ -1,6 +1,9 @@
 <template>
-  <header :class="{closed:!isOpened}">
+  <header>
     <div class="header">
+      <div v-show="!isExpanded" class="expendable" @click="toggle">
+        <span class="material-icons">menu</span>
+      </div>
       <div class="navigation">
         <span>{{navigation}}</span>
       </div>
@@ -10,20 +13,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   props: {
     navigation: String,
   },
-  created() {
-    $bus.$on('toggleHeader', this.onReceive);
-  },
   data: () => ({
-    isOpened: true,
     closed: false,
   }),
+  computed: mapState('layout', ['isExpanded']),
   methods: {
-    onReceive(data) {
-      this.isOpened = data;
+    toggle() {
+      this.$store.dispatch('layout/updateIsOpened', !this.isExpanded);
     },
   },
 };
@@ -37,7 +39,6 @@ header {
   z-index: 999;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   background-color: $white-color;
-  padding-left: 20px;
   .header {
     display: flex;
     align-items: center;
@@ -47,6 +48,7 @@ header {
     font-weight: bold;
     .navigation {
       width: 50%;
+      padding-left: 20px;
       &:before {
         position: relative;
         content: "";

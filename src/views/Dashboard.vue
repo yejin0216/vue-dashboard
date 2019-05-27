@@ -6,22 +6,41 @@
       <!-- 대시보드 제어버튼 그룹 -->
       <div class="controlGroup">
         <ul class="controlItem">
-          <li @click="changeStyle('addWdgt')" :class="{active:isClicked == 'addWdgt'}">
+          <li @click="updateDashbd('bookmark')" :class="{active:attrs.bookmark}" title="위젯 추가">
             <font-awesome-icon :icon="['fa', 'plus']"/>
           </li>
-          <li @click="addBookmark" :class="{active:isBookmark}">
+          <li @click="updateDashbd('alarm')" :class="{active:attrs.alarm}" title="이벤트 수신함">
+            <font-awesome-icon :icon="['far', 'comment-alt']"/>
+          </li>
+          <li @click="updateDashbd('observer')" :class="{active:attrs.observer}" title="지켜보는">
+            <font-awesome-icon :icon="['fa', 'user-friends']"/>
+          </li>
+          <li @click="updateDashbd('setting')" :class="{active:attrs.setting}" title="설정">
+            <font-awesome-icon :icon="['fas', 'cog']"/>
+          </li>
+          <!--<li @click="updateDashbd('share')" :class="{active:attrs.share}" title="대시보드 공유">
+            <font-awesome-icon :icon="['fa', 'share-square']"/>
+          </li>
+          <li @click="addBookmark" :class="{active:isBookmark}" title="즐겨찾기 추가">
             <font-awesome-icon :icon="['fa', 'bookmark']"/>
           </li>
-          <li @click="modifyDashbd('delete')" :class="{active:isClicked == 'delete'}">
+          <li @click="modifyDashbd('delete')" :class="{active:isSelected == 'delete'}" title="대시보드 삭제">
             <font-awesome-icon :icon="['far', 'trash-alt']"/>
           </li>
-          <li @click="modifyDashbd('copy')" :class="{active:isClicked == 'copy'}">
+          <li @click="modifyDashbd('copy')" :class="{active:isSelected == 'copy'}" title="대시보드 복제">
             <font-awesome-icon :icon="['far', 'copy']"/>
-          </li>
-          <li @click="changeStyle('alarm')" :class="{active:isClicked == 'alarm'}">
-            <font-awesome-icon :icon="['fa', 'envelope-open-text']"/>
-          </li>
+          </li>-->
         </ul>
+      </div>
+      <div class="dropdown settingList">
+        <div>
+          <ul>
+            <li>즐겨찾기</li>
+            <li>대시보드 공유</li>
+            <li>대시보드 복제</li>
+            <li>대시보드 삭제</li>
+          </ul>
+        </div>
       </div>
       <!--// 대시보드 제어버튼 그룹 -->
     </HeaderComponent>
@@ -39,18 +58,25 @@ export default {
   },
   data: () => ({
     title: '대시보드',
-    isBookmark: false, // 북마크 여부
-    isClicked: '', // 클릭 여부
+    attrs: {
+      bookmark: false,
+      alarm: false,
+      observer: false,
+      share: false,
+      setting: false,
+    },
+    settingList: [
+      { title: '즐겨찾기' },
+      { title: '대시보드 복제' },
+      { title: '대시보드 삭제' },
+    ],
   }),
   methods: {
-    changeStyle(value) {
-      this.isClicked = value;
-    },
-    addBookmark() {
-      this.isBookmark = !this.isBookmark;
-    },
-    modifyDashbd(value) {
-      this.changeStyle(value); // style 변경
+    updateDashbd(flag) {
+      this.attrs[flag] = !this.attrs[flag];
+      // 대시보드 설정을 클릭했을 경우 drop down 출력
+      // if (flag === 'setting') {
+      // }
     },
   },
   mounted() {
@@ -78,6 +104,20 @@ export default {
       }
       .active {
         color: $yellow-color;
+      }
+    }
+  }
+  .settingList {
+    @extend %dropdown;
+    display: none;
+    right: 0;
+    top: 50px;
+    li {
+      height: 40px;
+      line-height: 40px;
+      padding-left: 10px;
+      &:hover {
+        background-color: #f1f1f1;
       }
     }
   }

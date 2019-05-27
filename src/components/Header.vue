@@ -2,7 +2,7 @@
   <header>
     <div class="header">
       <div v-show="!isExpanded" class="expendable" @click="toggle">
-        <span class="material-icons">menu</span>
+        <i class="material-icons">menu</i>
       </div>
       <div class="navigation">
         <span>{{navigation}}</span>

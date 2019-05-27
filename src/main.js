@@ -10,7 +10,9 @@ import './plugins/vuetify';
 import 'babel-polyfill';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBookmark as farBookmark, faTrashAlt as farTrashAlt, faCopy as farCopy } from '@fortawesome/free-regular-svg-icons';
+import {
+  faBookmark as farBookmark, faTrashAlt as farTrashAlt, faCopy as farCopy, faCommentAlt as farCommentAlt,
+} from '@fortawesome/free-regular-svg-icons';
 import {
   faTabletAlt,
   faChartBar,
@@ -21,7 +23,9 @@ import {
   faPowerOff,
   faPlus,
   faBookmark,
-  faEnvelopeOpenText,
+  faUserFriends,
+  faShareSquare,
+  faUserCog,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -32,7 +36,7 @@ import AlertModal from './plugins/alertModal';
 import App from './App.vue';
 
 /* font awesome */
-library.add(faTabletAlt, faChartBar, faListOl, faInfoCircle, faCog, faBell, faPowerOff, faPlus, farBookmark, faBookmark, farTrashAlt, farCopy, faEnvelopeOpenText);
+library.add(faTabletAlt, faChartBar, faListOl, faInfoCircle, faCog, faBell, faPowerOff, faPlus, farBookmark, faBookmark, farTrashAlt, farCopy, farCommentAlt, faShareSquare, faUserCog, faUserFriends);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 /* Alert Modal */

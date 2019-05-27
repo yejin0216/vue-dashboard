@@ -28,7 +28,7 @@ export default {
     login(store, payload) {
       store.commit("addMemberInfo", payload);
       // sessionStorage에 Token 을 추가한다. 
-      let expTime = payload.pub_time + payload.expires_in;
+      let expTime = (payload.pub_time + payload.expires_in) * 1000;
       sessionStorage.setItem("accessToken", payload.access_token);
       sessionStorage.setItem("expTime", expTime);
       // 모든 HTTP 요청 헤더에 Authorization 을 추가한다.
@@ -42,9 +42,9 @@ export default {
     }
   },
   getters: {
-    getExpYn(state) {
-      console.log(Date.now())
+    getExpYn: state => {
       console.log(state.expTime)
+      console.log(Date.now())
       if (Date.now() > state.expTime) {
         return true;
       }

@@ -142,8 +142,8 @@ export default {
         width: 100%;
         padding: 5px 15px;
         border-radius: 1px;
-        border: 1px solid $primary-variant-color;
-        background-color: $primary-variant-color;
+        border: 1px solid $primary-sub-color;
+        background-color: $primary-sub-color;
         font-size: initial;
         color: #fff;
         line-height: 28px;
@@ -191,7 +191,7 @@ export default {
       color: #aaa;
       font-size: $font-small-size;
       b {
-        color: $primary-variant-color;
+        color: $primary-sub-color;
       }
     }
   }

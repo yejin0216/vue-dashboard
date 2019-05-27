@@ -3,57 +3,51 @@
     <HeaderComponent :navigation="title">
       <!-- Navigation(현재 위치) -->
     </HeaderComponent>
-    <article class="subcontents">
-      <div class="condition text-xs-right">
-        <select class="selectBox">
-          <option value="name">등록일순</option>
-          <option value="date">이름순</option>
-          <option value="name">구분순</option>
-        </select>
-      </div>
-      <v-container grid-list-md>
-        <v-layout row wrap>
-          <v-flex v-for="i in 5" :key="`4${i}`" sm4 xs12>
-            <v-card flat @mouseover="mouseon(`${i}`)" @mouseleave="mouseoff()">
-              <div :class="[{ expanded:`${i}`==isSelected }, typeIcon ]">
-                <v-img :src="require('../assets/images/environment_bookmark.png')"></v-img>
-              </div>
-              <v-card-text class="text-xs-center">
-                <div>
-                  <div :class="[{ active:`${i}`==isSelected }, summary ]">실시간 환경 감시</div>
+    <div class="subcontents">
+      <article>
+        <div class="condition text-xs-right">
+          <select class="selectBox">
+            <option value="date">이름(오름차순)</option>
+            <option value="name">구분(오름차순)</option>
+          </select>
+        </div>
+        <v-container grid-list-md>
+          <v-layout row wrap>
+            <v-flex v-for="i in 5" :key="`4${i}`" sm4 xs12>
+              <v-card flat @mouseover="mouseon(`${i}`)" @mouseleave="mouseoff()">
+                <div :class="[{ expanded:`${i}`==isSelected }, typeIcon ]">
+                  <v-img :src="require('../assets/images/environment_bookmark.png')"></v-img>
                 </div>
-              </v-card-text>
-              <v-divider></v-divider>
-              <v-card-text>
-                <div>
-                  <div class="detail">
-                    <p>구분</p>
-                    <p>
-                      <span class="dash">|</span>
-                      <span>환경</span>
-                    </p>
+                <v-card-text class="text-xs-center">
+                  <div>
+                    <div :class="[{ active:`${i}`==isSelected }, summary ]">실시간 환경 감시</div>
                   </div>
-                  <div class="detail">
-                    <p>작업자</p>
-                    <p>
-                      <span class="dash">|</span>
-                      <span>wis201*</span>
-                    </p>
+                </v-card-text>
+                <v-divider></v-divider>
+                <v-card-text>
+                  <div>
+                    <div class="detail">
+                      <p>구분</p>
+                      <p>
+                        <span class="dash">|</span>
+                        <span>환경</span>
+                      </p>
+                    </div>
+                    <div class="detail">
+                      <p>작업자</p>
+                      <p>
+                        <span class="dash">|</span>
+                        <span>wis201*</span>
+                      </p>
+                    </div>
                   </div>
-                  <div class="detail">
-                    <p>등록일자</p>
-                    <p>
-                      <span class="dash">|</span>
-                      <span>2019-04-01</span>
-                    </p>
-                  </div>
-                </div>
-              </v-card-text>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </article>
+                </v-card-text>
+              </v-card>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </article>
+    </div>
   </div>
 </template>
 
@@ -103,7 +97,7 @@ p {
   margin-bottom: initial;
   width: 50%;
   .dash {
-    margin: 0 10px !important;
+    margin: 0 10px 0 0 !important;
   }
 }
 .active {

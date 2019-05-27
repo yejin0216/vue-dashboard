@@ -5,7 +5,7 @@
       <div class="wrapper">
         <nav v-show="isExpanded">
           <div class="expendable" @click="toggle">
-            <span class="material-icons">menu</span>
+            <i class="material-icons">menu</i>
           </div>
           <div class="memberInfo">
             <img
@@ -61,7 +61,7 @@
             </li>
             <li @click="navigate('Settings')" :class="{active:isSelected == 'Settings'}">
               <span class="menuIcon">
-                <font-awesome-icon :icon="['fas', 'cog']"/>
+                <font-awesome-icon :icon="['fas', 'user-cog']"/>
               </span>
               <span>관리</span>
             </li>
@@ -145,7 +145,7 @@ nav {
   height: 100%;
   background-color: $secondary-color;
   .memberInfo {
-    background-color: $secondary-variant-color;
+    background-color: $secondary-sub-color;
     height: 160px;
     text-align: center;
     p {
@@ -172,7 +172,7 @@ nav {
     }
   }
   .list-children {
-    background-color: $secondary-variant-color;
+    background-color: $secondary-sub-color;
     max-height: 160px;
     overflow-y: auto;
     overflow-x: hidden;
@@ -220,6 +220,7 @@ footer {
   flex: 3 0px;
   // margin-left: 220px;
   background-color: #f1f1f1;
+  color: $font-color;
 }
 #profile {
   width: 85px;

@@ -25,7 +25,7 @@ import {
   faBookmark,
   faUserFriends,
   faShareSquare,
-  faUserCog,
+  faEllipsisH,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -36,7 +36,8 @@ import AlertModal from './plugins/alertModal';
 import App from './App.vue';
 
 /* font awesome */
-library.add(faTabletAlt, faChartBar, faListOl, faInfoCircle, faCog, faBell, faPowerOff, faPlus, farBookmark, faBookmark, farTrashAlt, farCopy, farCommentAlt, faShareSquare, faUserCog, faUserFriends);
+library.add(faTabletAlt, faChartBar, faListOl, faInfoCircle, faCog, faBell, faPowerOff, faPlus, farBookmark,
+  faBookmark, farTrashAlt, farCopy, farCommentAlt, faShareSquare, faUserFriends, faEllipsisH);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 /* Alert Modal */

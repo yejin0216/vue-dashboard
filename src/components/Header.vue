@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="header">
-      <div v-show="!isExpanded" class="expendable" @click="toggle">
+      <div v-show="!gnbStatus" class="expendable" @click="toggle">
         <i class="material-icons">menu</i>
       </div>
       <div class="navigation">
@@ -18,14 +18,15 @@ import { mapState } from 'vuex';
 export default {
   props: {
     navigation: String,
+    sup: String,
   },
   data: () => ({
     closed: false,
   }),
-  computed: mapState('layout', ['isExpanded']),
+  computed: mapState('layout', ['gnbStatus']),
   methods: {
     toggle() {
-      this.$store.dispatch('layout/updateIsOpened', !this.isExpanded);
+      this.$store.dispatch('layout/updateGnbStatus', !this.gnbStatus);
     },
   },
 };
@@ -52,6 +53,7 @@ header {
       &:before {
         position: relative;
         content: "";
+        top: -1px;
         margin-right: 9px;
         vertical-align: middle;
         display: inline-block;

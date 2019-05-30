@@ -5,17 +5,25 @@
 export default {
   namespaced: true,
   state: {
-    isExpanded: false,
+    gnbStatus: false,
+    navigation: sessionStorage.getItem('navigation') || null,
   },
   /* eslint-disable */
   mutations: {
-    updateIsOpened(state, payload) {
-      state.isExpanded = payload;
+    updateGnbStatus(state, payload) {
+      state.gnbStatus = payload;
     },
+    updateNavigtion(state, payload) {
+      state.navigation = payload;
+      sessionStorage.setItem("navigation", state.navigation);
+    }
   },
   actions: {
-    updateIsOpened(store, payload) {
-      store.commit("updateIsOpened", payload);
+    updateGnbStatus(store, payload) {
+      store.commit("updateGnbStatus", payload);
+    },
+    updateNavigtion(store, payload) {
+      store.commit("updateNavigtion", payload)
     }
   }
   /* eslint-disable */

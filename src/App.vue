@@ -3,7 +3,7 @@
     <v-app>
       <!-- GNB -->
       <div class="wrapper">
-        <nav v-show="isExpanded">
+        <nav v-show="gnbStatus">
           <div class="expendable" @click="toggle">
             <i class="material-icons">menu</i>
           </div>
@@ -13,7 +13,7 @@
               src="https://images.kbench.com/kbench/article/2018_06/k188920p1n1.jpg"
               alt="profile"
             >
-            <p>wis201* 님</p>
+            <p>wis201*</p>
           </div>
           <ul class="menuItem">
             <li @click="navigate('Bookmarks')" :class="{active:isSelected == 'Bookmarks'}">
@@ -61,7 +61,7 @@
             </li>
             <li @click="navigate('Settings')" :class="{active:isSelected == 'Settings'}">
               <span class="menuIcon">
-                <font-awesome-icon :icon="['fas', 'user-cog']"/>
+                <font-awesome-icon :icon="['fas', 'cog']"/>
               </span>
               <span>관리</span>
             </li>
@@ -98,17 +98,18 @@ export default {
     isSelected: '',
     sequence: '',
     list: [
-      { name: 'Dashboard1', sequence: 1 },
-      { name: 'Dashboard2', sequence: 2 },
+      { name: '환경 모니터링', sequence: 1 },
+      { name: '디바이스 모니터링', sequence: 2 },
     ],
   }),
-  computed: mapState('layout', ['isExpanded']), // navigation style은 veux store에서 관리한다.
+  computed: mapState('layout', ['gnbStatus']), // navigation style은 veux store에서 관리한다.
   methods: {
     navigate(path, item) {
       if (item) {
+        this.$store.dispatch('layout/updateNavigtion', item.name);
         this.$router.push({
           name: path,
-          params: { sequence: item.sequence, name: item.name },
+          params: { sequence: item.sequence },
         });
         this.sequence = item.sequence;
       } else {
@@ -117,7 +118,7 @@ export default {
       }
     },
     toggle() {
-      this.$store.dispatch('layout/updateIsOpened', !this.isExpanded);
+      this.$store.dispatch('layout/updateGnbStatus', !this.gnbStatus);
     },
   },
   updated() {

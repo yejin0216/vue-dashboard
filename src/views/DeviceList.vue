@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <HeaderComponent :navigation="title">
+    <HeaderComponent :navigation="navigation">
       <!-- Navigation(현재 위치) -->
     </HeaderComponent>
     <div class="subcontents">
@@ -64,7 +64,7 @@ export default {
     HeaderComponent,
   },
   data: () => ({
-    title: '나의 디바이스',
+    navigation: '나의 디바이스',
   }),
 };
 </script>

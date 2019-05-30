@@ -36,8 +36,7 @@ export default {
     },
     logout(store, payload) {
       store.commit("removeMemberInfo", payload);
-      sessionStorage.removeItem("accessToken");
-      sessionStorage.removeItem("expTime");
+      sessionStorage.clear();
       axios.defaults.headers.common["Authorization"] = null;
     }
   },

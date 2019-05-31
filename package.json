@@ -38,6 +38,7 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue-cli-plugin-vuetify": "^0.5.0",
+    "vue-grid-layout": "^2.3.4",
     "vue-template-compiler": "^2.5.21",
     "vuetify-loader": "^1.0.5"
   },
@@ -53,6 +54,8 @@
     "rules": {
       "no-console": "off",
       "no-undef": "off",
+      "no-extraneous-dependencies": "off",
+      "no-cycle": "off",
       "max-len": [
         "error",
         {

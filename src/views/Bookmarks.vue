@@ -85,7 +85,7 @@ export default {
 @import "../assets/scss/_contents.scss";
 
 .v-card {
-  cursor: pointer;
+  @extend %cursor-pointer;
 }
 .typeIcon {
   max-height: 80px;

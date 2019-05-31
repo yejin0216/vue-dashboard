@@ -12,9 +12,6 @@
       position: relative;
       height: calc(100% - 50px);
       overflow: auto;
-      //max-width: 940px;
-      //padding: 0 20px;
-      //margin: 0 auto;
       .condition {
         border-bottom: 1px solid #333;
         padding: 10px 0;
@@ -44,7 +41,7 @@
   font-size: 13px;
 }
 .link {
-  cursor: pointer;
+  @extend %cursor-pointer;
   &:hover {
     text-decoration-line: underline;
   }

@@ -5,9 +5,24 @@
         <i class="material-icons">menu</i>
       </div>
       <div class="navigation">
+        <slot></slot>
         <span>{{navigation}}</span>
       </div>
-      <slot></slot>
+      <div class="userInfo">
+        <div class="userName" @click="showUserDetail">
+          <span>Michell Tadrrr</span>
+          <i></i>
+        </div>
+      </div>
+      <div class="dropdown settingList" v-show="isDropped">
+        <div>
+          <ul>
+            <li @click="logout">언어</li>
+            <li @click="logout">사용자 가이드</li>
+            <li @click="logout">로그아웃</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </header>
 </template>
@@ -22,11 +37,18 @@ export default {
   },
   data: () => ({
     closed: false,
+    isDropped: false,
   }),
   computed: mapState('layout', ['gnbStatus']),
   methods: {
     toggle() {
       this.$store.dispatch('layout/updateGnbStatus', !this.gnbStatus);
+    },
+    showUserDetail() {
+      this.isDropped = !this.isDropped;
+    },
+    logout() {
+      this.$store.dispatch('member/logout');
     },
   },
 };
@@ -34,11 +56,7 @@ export default {
 
 <style lang="scss" scoped>
 header {
-  //position: fixed;
-  //width: inherit;
   height: 50px;
-  //z-index: 999;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   background-color: $white-color;
   .header {
     display: flex;
@@ -46,21 +64,56 @@ header {
     height: 50px;
     line-height: 50px;
     font-size: 15px;
-    font-weight: bold;
+    box-shadow: 0 -1px 5px 0 rgba(0, 0, 0, 0.26);
     .navigation {
       width: 50%;
       padding-left: 20px;
-      &:before {
-        position: relative;
-        content: "";
-        top: -1px;
-        margin-right: 9px;
-        vertical-align: middle;
-        display: inline-block;
-        width: 5px;
-        height: 15px;
-        border-radius: 3px;
-        background-color: #2d2d2d;
+      height: inherit;
+    }
+    .userInfo {
+      width: 50%;
+      text-align: right;
+      height: inherit;
+      .userName {
+        margin: 0 20px 0 auto;
+        height: inherit;
+        font-size: 13px;
+        span {
+          padding: 0 5px;
+          @extend %cursor-pointer;
+        }
+        i {
+          &:after {
+            border-style: solid;
+            border-width: 1px 1px 0 0;
+            content: "";
+            display: inline-block;
+            height: 0.45em;
+            position: relative;
+            transform: rotate(-45deg);
+            vertical-align: super;
+            width: 0.45em;
+            top: 2px;
+            left: 5px;
+            transform: rotate(135deg);
+          }
+        }
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .settingList {
+      @extend %dropdown;
+      right: 0;
+      top: 50px;
+      li {
+        height: 40px;
+        line-height: 40px;
+        padding-left: 10px;
+        &:hover {
+          background-color: #f1f1f1;
+        }
       }
     }
   }

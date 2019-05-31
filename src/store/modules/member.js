@@ -3,6 +3,7 @@
  */
 
 import axios from 'axios';
+// import router from '../../router';
 
 export default {
   namespaced: true,
@@ -19,7 +20,7 @@ export default {
       state.accessToken = payload.access_token;
       state.expTime = payload.expTime;
     },
-    removeMemberInfo(state, payload) {
+    removeMemberInfo(state) {
       state.accessToken = null;
       state.expTime = null;
     }
@@ -34,10 +35,11 @@ export default {
       // 모든 HTTP 요청 헤더에 Authorization 을 추가한다.
       axios.defaults.headers.common["Authorization"] = `Bearer ${payload.access_token}`;
     },
-    logout(store, payload) {
-      store.commit("removeMemberInfo", payload);
+    logout(store) {
+      store.commit("removeMemberInfo");
       sessionStorage.clear();
       axios.defaults.headers.common["Authorization"] = null;
+      router.push({ name: "Login" });
     }
   },
   getters: {

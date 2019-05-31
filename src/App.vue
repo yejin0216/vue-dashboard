@@ -7,14 +7,6 @@
           <div class="expendable" @click="toggle">
             <i class="material-icons">menu</i>
           </div>
-          <div class="memberInfo">
-            <img
-              id="profile"
-              src="https://images.kbench.com/kbench/article/2018_06/k188920p1n1.jpg"
-              alt="profile"
-            >
-            <p>wis201*</p>
-          </div>
           <ul class="menuItem">
             <li @click="navigate('Bookmarks')" :class="{active:isSelected == 'Bookmarks'}">
               <span class="menuIcon">
@@ -26,14 +18,14 @@
               <span class="menuIcon">
                 <font-awesome-icon :icon="['fas', 'tablet-alt']"/>
               </span>
-              <span>나의 디바이스</span>
+              <span>디바이스</span>
             </li>
             <li
               @click="navigate('DashboardList')"
               :class="{active:isSelected == 'DashboardList' || isSelected == 'Dashboard'}"
             >
               <span class="menuIcon">
-                <font-awesome-icon :icon="['fas', 'chart-bar']"/>
+                <font-awesome-icon :icon="['fa', 'chart-bar']"/>
               </span>
               <span>대시보드</span>
             </li>
@@ -53,7 +45,7 @@
               </span>
               <span>이벤트 타임라인</span>
             </li>
-            <li @click="navigate('Guide')" :class="{active:isSelected == 'Guide'}">
+            <!-- <li @click="navigate('Guide')" :class="{active:isSelected == 'Guide'}">
               <span class="menuIcon">
                 <font-awesome-icon :icon="['fas', 'info-circle']"/>
               </span>
@@ -64,19 +56,15 @@
                 <font-awesome-icon :icon="['fas', 'cog']"/>
               </span>
               <span>관리</span>
-            </li>
+            </li>-->
           </ul>
-          <footer>
-            <ul>
-              <li class="footerItem">
-                <font-awesome-icon :icon="['fas', 'bell']"/>
-              </li>
-              <li class="seperator">|</li>
-              <li class="footerItem">
-                <font-awesome-icon :icon="['fas', 'power-off']"/>
-              </li>
-            </ul>
-          </footer>
+          <!-- <footer>
+            <div>
+              <span>
+                <font-awesome-icon :icon="['fas', 'cog']"/>
+              </span>관리
+            </div>
+          </footer>-->
         </nav>
         <div class="content">
           <!-- Dynamic Content View -->
@@ -98,8 +86,12 @@ export default {
     isSelected: '',
     sequence: '',
     list: [
-      { name: '환경 모니터링', sequence: 1 },
-      { name: '디바이스 모니터링', sequence: 2 },
+      { name: 'Customer Profitability Sample', sequence: 1 },
+      { name: 'IT Spend Analysis Sample', sequence: 2 },
+      { name: 'Customer Profitability Sample', sequence: 3 },
+      { name: 'IT Spend Analysis Sample', sequence: 4 },
+      { name: 'Customer Profitability Sample', sequence: 5 },
+      { name: 'IT Spend Analysis Sample', sequence: 6 },
     ],
   }),
   computed: mapState('layout', ['gnbStatus']), // navigation style은 veux store에서 관리한다.
@@ -158,7 +150,7 @@ nav {
       height: 48px;
       padding: 14px 0 0 15px;
       color: $white-color;
-      border-bottom: 1px solid #5c5c5c;
+      // border-bottom: 1px solid #5c5c5c;
       border-left: 0.2em solid transparent;
       .menuIcon {
         display: inline-block;
@@ -170,11 +162,12 @@ nav {
     }
     li.active {
       border-left: 0.2em solid $primary-color;
+      background-color: rgba(159, 159, 159, 0.05);
     }
   }
   .list-children {
     background-color: $secondary-sub-color;
-    max-height: 160px;
+    max-height: 350px;
     overflow-y: auto;
     overflow-x: hidden;
     li {
@@ -182,7 +175,7 @@ nav {
       border-left: 0.2em solid transparent;
       height: 42px;
       line-height: 42px;
-      padding-left: 20px;
+      padding: 0 20px;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
@@ -198,19 +191,17 @@ nav {
 footer {
   position: absolute;
   bottom: 0;
-  height: 25px;
+  height: 50px;
   width: inherit;
   background-color: $secondary-color;
-  ul li {
-    display: table-cell;
-    text-align: center;
-    color: $white-color;
-  }
-  ul li.footerItem {
-    width: 105px;
-  }
-  ul li.seperator {
-    width: 10px;
+  color: $white-color;
+  div {
+    line-height: 50px;
+    padding-left: 15px;
+    span {
+      display: inline-block;
+      width: 20px;
+    }
   }
 }
 .content {

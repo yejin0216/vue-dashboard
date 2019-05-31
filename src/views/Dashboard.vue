@@ -1,76 +1,84 @@
 <template>
   <div class="dashbd">
     <HeaderComponent :navigation="navigation">
-      <!-- Navigation(현재 위치) -->
-      <!--// Navigation(현재 위치) -->
-      <!-- 대시보드 제어버튼 그룹 -->
-      <div class="controlGroup">
-        <ul class="controlItem">
-          <li @click="updateDashbd('bookmark')" :class="{active:attrs.bookmark}" title="위젯 추가">
-            <font-awesome-icon :icon="['fa', 'plus']"/>
-          </li>
-          <!-- <li @click="updateDashbd('alarm')" :class="{active:attrs.alarm}" title="이벤트 수신함">
-            <font-awesome-icon :icon="['far', 'comment-alt']"/>
-          </li>-->
-          <!-- <li @click="updateDashbd('observer')" :class="{active:attrs.observer}" title="지켜보는">
-            <font-awesome-icon :icon="['fa', 'user-friends']"/>
-          </li>-->
-          <li @click="updateDashbd('setting')" :class="{active:attrs.setting}" title="설정">
-            <font-awesome-icon :icon="['fas', 'ellipsis-h']"/>
-          </li>
-          <!--<li @click="updateDashbd('share')" :class="{active:attrs.share}" title="대시보드 공유">
-            <font-awesome-icon :icon="['fa', 'share-square']"/>
-          </li>
-          <li @click="addBookmark" :class="{active:isBookmark}" title="즐겨찾기 추가">
-            <font-awesome-icon :icon="['fa', 'bookmark']"/>
-          </li>
-          <li @click="modifyDashbd('delete')" :class="{active:isSelected == 'delete'}" title="대시보드 삭제">
-            <font-awesome-icon :icon="['far', 'trash-alt']"/>
-          </li>
-          <li @click="modifyDashbd('copy')" :class="{active:isSelected == 'copy'}" title="대시보드 복제">
-            <font-awesome-icon :icon="['far', 'copy']"/>
-          </li>-->
-        </ul>
-      </div>
-      <div class="dropdown settingList" v-show="isDropped">
-        <div>
-          <ul>
-            <li>즐겨찾기</li>
-            <li>대시보드 공유</li>
-            <li>대시보드 복제</li>
-            <li>대시보드 삭제</li>
-          </ul>
-        </div>
-      </div>
-      <!--// 대시보드 제어버튼 그룹 -->
+      <span class="path">대시보드</span>
     </HeaderComponent>
+    <grid-layout
+      :layout.sync="layout"
+      :col-num="12"
+      :row-height="30"
+      :is-draggable="draggable"
+      :is-resizable="resizable"
+      :vertical-compact="true"
+      :use-css-transforms="true"
+      :responsive="true"
+    >
+      <grid-item
+        v-for="item in layout"
+        :key="item.i"
+        :static="item.static"
+        :x="item.x"
+        :y="item.y"
+        :w="item.w"
+        :h="item.h"
+        :i="item.i"
+      >
+        <div class="vue-grid-header">
+          <p class="vue-grid-header-title">디바이스 목록 위젯</p>
+          <p class="vue-grid-header-subtitle">작은제목</p>
+        </div>
+        <div class="vue-grid-contents"></div>
+      </grid-item>
+    </grid-layout>
   </div>
 </template>
 
 
 <script>
 import { mapState } from 'vuex';
+// import VueGridLayout from 'vue-grid-layout';
 import HeaderComponent from '../components/Header.vue';
+
+const testLayout = [
+  {
+    x: 0,
+    y: 0,
+    w: 4,
+    h: 9,
+    i: '0',
+    static: false,
+  },
+  {
+    x: 4,
+    y: 0,
+    w: 4,
+    h: 9,
+    i: '1',
+    static: false,
+  },
+  {
+    x: 8,
+    y: 0,
+    w: 4,
+    h: 9,
+    i: '2',
+    static: false,
+  },
+];
 
 export default {
   name: 'Dashboard',
   components: {
     HeaderComponent,
+    GridLayout: VueGridLayout.GridLayout,
+    GridItem: VueGridLayout.GridItem,
   },
   data: () => ({
-    attrs: {
-      bookmark: false,
-      alarm: false,
-      observer: false,
-      share: false,
-      setting: false,
-    },
-    settingList: [
-      { title: '즐겨찾기' },
-      { title: '대시보드 복제' },
-      { title: '대시보드 삭제' },
-    ],
     isDropped: false,
+    layout: testLayout,
+    draggable: true,
+    resizable: true,
+    index: 0,
   }),
   computed: mapState('layout', ['navigation']),
   methods: {
@@ -88,34 +96,20 @@ export default {
 <style lang="scss" scoped>
 .dashbd {
   width: inherit;
-  .controlGroup {
-    width: 50%;
-    .controlItem {
-      display: flex;
-      float: right;
-      li {
-        width: 50px;
-        text-align: center;
-        // border-left: 1px solid #eaeaea;
-        cursor: pointer;
-      }
-      .active {
-        // color: $yellow-color;
-        background-color: #f1f1f1;
-      }
-    }
-  }
-  .settingList {
-    @extend %dropdown;
-    right: 0;
-    top: 50px;
-    li {
-      height: 40px;
-      line-height: 40px;
-      padding-left: 10px;
-      &:hover {
-        background-color: #f1f1f1;
-      }
+  .path {
+    &:after {
+      border-style: solid;
+      border-width: 1px 1px 0 0;
+      content: "";
+      display: inline-block;
+      height: 0.45em;
+      position: relative;
+      transform: rotate(-45deg);
+      vertical-align: super;
+      width: 0.45em;
+      top: 4px;
+      margin: 0 10px 0 8px;
+      transform: rotate(45deg);
     }
   }
 }

@@ -1,7 +1,10 @@
 body,div,span,b,input,textarea,select,button,table,h1,code,pre,a {
   font-family: $font-stack;
-  //font-size: $font-normal-size;
-  //color: $font-color;
+  -ms-user-select: none; 
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 *:focus {
@@ -17,15 +20,18 @@ a {
   }
 }
 
+%cursor-pointer {
+  cursor: pointer;
+}
+
 ul {
   padding: initial;
   li {
+    @extend %cursor-pointer;
     list-style: none;
-    cursor: pointer;
     article {
       max-width: 900px;
       margin: 0 auto;
-      //padding-top: 50px;
       .condition {
         border-bottom: 1px solid #333;
         padding: 10px 0;
@@ -33,7 +39,7 @@ ul {
       }
       .container {
         padding: initial;
-        color: $font-color !important;
+        color: inherit !important;
       }
     };
   }
@@ -47,42 +53,29 @@ ul {
 }
 
 /* 버튼 스타일 */
-button {
+@mixin btn-background($background, $border, $color) {
+  height: 30px;
   margin: 0 2px;
+  padding: 0 15px;
+  border-radius: 1px;
+  font-size: 12px;
+  line-height: 28px;
+  background: $background;
+  color: $color;
+  border: $border;
 }
 .btn-white-30 {
-  height: 30px;
-  padding: 0 15px;
-  border-radius: 1px;
-  border: 1px solid #ccc;
-  background-color: $white-color;
-  font-size: 12px;
-  color: #666;
-  line-height: 28px;
+  @include btn-background($white-color, 1px solid #ccc, #666);
 }
 .btn-gray-30 {
-  height: 30px;
-  padding: 0 15px;
-  border-radius: 1px;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-  font-size: 12px;
-  color: #666;
-  line-height: 28px;
+  @include btn-background(#f1f1f1, 1px solid #ccc, #666);
 }
 .btn-black-30 {
-  height: 30px;
-  padding: 0 15px;
-  border-radius: 1px;
-  border: 1px solid #333;
-  background-color: #333;
-  font-size: 12px;
-  color: $white-color;
-  line-height: 28px;
+  @include btn-background($white-color, 1px solid #333, #333);
 }
 
 /* 입력폼 */
-%form-control {
+@mixin form-control($size) {
   display: inline-block;
   height: 30px;
   line-height: 1;
@@ -92,15 +85,14 @@ button {
   border-radius: 2px;
   box-shadow: none;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  font-size: $size;
 }
 .form {
-  @extend %form-control;
-  font-size: $font-normal-size;
+  @include form-control($font-normal-size);
 }
 .selectBox {
-  @extend %form-control;
+  @include form-control($font-small-size);
   -webkit-appearance: menulist-button;
-  font-size: $font-small-size;
   min-width: 100px;
 }
 
@@ -120,7 +112,7 @@ button {
 .expendable {
   background-color: $primary-color;
   height: 50px;
-  cursor: pointer;
+  @extend %cursor-pointer;
   .material-icons {
     color: $white-color;
     font-size: 30px;
@@ -143,9 +135,36 @@ button {
 
 /* vutify */
 .material-icons {
-  cursor: pointer;
+  @extend %cursor-pointer;
 }
 .v-card {
   border: 1px solid #ddd !important;
   color: inherit !important;
+}
+
+/* vue grid layout */
+.vue-grid-item {
+  background-color: $white-color;
+  box-shadow: 1px 1px 2px 0 #00000010;
+}
+.vue-grid-header {
+  height: 50px;
+  padding: 15px;
+  position: relative;
+  @extend %cursor-pointer;
+  z-index: 20;
+  &-title {
+    font-size: $font-normal-size !important;
+    margin-bottom: initial;
+  }
+  &-subtitle {
+    font-size: 11px;
+    color: #666666;
+    margin-bottom: initial;
+  }
+}
+.vue-grid-contents {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }

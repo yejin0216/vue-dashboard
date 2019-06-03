@@ -3,7 +3,6 @@
  */
 
 import axios from 'axios';
-// import router from '../../router';
 
 export default {
   namespaced: true,
@@ -39,7 +38,6 @@ export default {
       store.commit("removeMemberInfo");
       sessionStorage.clear();
       axios.defaults.headers.common["Authorization"] = null;
-      router.push({ name: "Login" });
     }
   },
   getters: {

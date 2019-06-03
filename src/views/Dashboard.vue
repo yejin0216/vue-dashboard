@@ -36,7 +36,7 @@
 
 <script>
 import { mapState } from 'vuex';
-// import VueGridLayout from 'vue-grid-layout';
+import VueGridLayout from 'vue-grid-layout';
 import HeaderComponent from '../components/Header.vue';
 
 const testLayout = [

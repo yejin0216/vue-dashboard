@@ -24,13 +24,11 @@ const alertModal = {
       }
       modalInstance = new ModalConstructor({
         el: document.createElement('template'),
-        data() {
-          return {
-            info,
-            title,
-            message,
-          };
-        },
+        data: () => ({
+          info,
+          title,
+          message,
+        }),
       });
       modalInstance.dialog = true;
       document.body.appendChild(modalInstance.$el);

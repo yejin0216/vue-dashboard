@@ -1,4 +1,4 @@
-# sfp-dashbd
+# vue-dashboard
 
 ## Project setup
 ```
